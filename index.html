@@ -12,7 +12,8 @@
 <body>
   <header>
     <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62
-    86">
+
+        86">
       <g id="wizard">
         <g id="wizard-coat">
           <polygon points="19 67 19 59 14 59 14 82 9 82 9 86 23 86 23 67 19 67" />
@@ -32,7 +33,8 @@
         </g>
         <g id="wizard-hands">
           <polygon points="19 67 19 59 14 59 14 82 9 82 9 86 23 86
-        23 67 19 67" fill="#fff" opacity="0.2" />
+
+          23 67 19 67" fill="#fff" opacity="0.2" />
           <rect x="14" y="73" width="5" height="5" fill="#fbd868" />
           <rect x="48" y="63" width="5" height="5" fill="#fbd868" />
           <rect x="48" width="10" height="10" fill="#3aa2ca" />
@@ -54,11 +56,11 @@
     </p>
     <div class="demo"></div>
     <div class="setup-open">
-      <img src="./img/user-1.jpg" class="setup-open-icon">
+      <img src="./img/user-1.jpg" class="setup-open-icon" tabindex="0">
     </div>
   </header>
   <div class="overlay setup hidden">
-    <form class="setup-wizard-form" method="post" enctype="multipart/form-data" autocomplete="off">
+    <form class="setup-wizard-form" method="post" action="https://js.dump.academy/code-and-magick" enctype="multipart/form-data" autocomplete="off">
       <div class="setup-title">
         <div class="setup-user">
           <div class="upload">
@@ -66,10 +68,10 @@
             <input type="file" name="avatar">
           </div>
           <label>
-            <input type="text" name="username" maxlength="25" required class="setup-user-name" value="Синий Пендальф" />
+            <input type="text" name="username" minlength="2" maxlength="25" required class="setup-user-name" value="Синий Пендальф" />
           </label>
         </div>
-        <span class="setup-close">&times;</span>
+        <span class="setup-close" tabindex="0">&times;</span>
       </div>
       <div class="setup-artifacts-shop">
         <div class="setup-artifacts-cell"><img src="img/icon-star.png" alt="Star" width="65" height="50" draggable="true">
@@ -170,5 +172,6 @@
   };
 
   </script>
+  <script src="js/stat.js"></script>>
   <script src="js/game.js"></script>
 </body>
