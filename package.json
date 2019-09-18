@@ -11,11 +11,19 @@
     "url": "https://github.com/htmlacademy-javascript/1181123-code-and-magick-18/issues"
   },
   "devDependencies": {
-    "eslint": "6.3.0",
-    "eslint-config-htmlacademy": "0.5.2"
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-htmlacademy": "0.5.2",
+    "eslint-plugin-import": "^2.18.2"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "eslint-config-standard": "^14.1.0",
+    "gruntcli": "0.0.2-security"
+  },
   "scripts": {
     "test": "eslint js/"
   },
