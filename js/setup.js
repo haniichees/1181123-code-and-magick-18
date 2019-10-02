@@ -108,17 +108,15 @@
   // обработчики событий валидации имени
   userNameInput.addEventListener('invalid', function (evt) {
     var target = evt.target;
-    if (target.value.length < 2 && target.value.length > 0) {
-      userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
-    } else if (target.value.length > 25) {
-      userNameInput.setCustomValidity('Имя не должно превышать 25-ти символов');
-    } else if (target.value.length === 0) {
-      userNameInput.setCustomValidity('Обязательное поле');
-    } else {
-      userNameInput.setCustomValidity('');
+    switch (target.value.length) {
+      case 0:
+        return userNameInput.setCustomValidity('Обязательное поле');
+      case 1:
+        return userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+      default:
+        return userNameInput.setCustomValidity('Имя не должно превышать 25 символов');
     }
   });
-
 
   userNameInput.addEventListener('input', function (evt) {
     var target = evt.target;
