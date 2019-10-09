@@ -32,7 +32,6 @@
         document.addEventListener('keydown', window.util.onButtonClose);
       }
     },
-
     // настройки загрузки/отправки/ошибок
     setupRequest: function (onLoad, onError) {
       var serverTime = 10000;
