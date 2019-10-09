@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+
   var QUANTITY = 4;
 
   var similarListElement = document.querySelector('.setup-similar-list');

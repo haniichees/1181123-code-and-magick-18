@@ -4,7 +4,6 @@
   var setupHandler = setup.querySelector('.upload');
   var setupForm = document.querySelector('.setup-wizard-form');
 
-
   // Открытие и закрытие окна насройки
   var openPopup = function () {
     setup.classList.remove('hidden');
