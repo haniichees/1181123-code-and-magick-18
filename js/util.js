@@ -1,5 +1,5 @@
 'use strict';
-(function() {
+(function () {
 
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
@@ -12,7 +12,7 @@
   var y = setup.style.top;
 
   window.util = {
-    onButtonClose: function(evt) {
+    onButtonClose: function (evt) {
       var current = evt.target;
       if (evt.keyCode === ESC_KEYCODE && current !== userNameInput) {
         setup.classList.add('hidden');
@@ -26,7 +26,7 @@
       }
     },
 
-    onButtonEnter: function(evt) {
+    onButtonEnter: function (evt) {
       if (evt.keyCode === ENTER_KEYCODE) {
         setup.classList.remove('hidden');
         document.addEventListener('keydown', window.util.onButtonClose);
@@ -34,23 +34,23 @@
     },
 
     // настройки загрузки/отправки/ошибок
-    setupRequest: function(onLoad, onError) {
+    setupRequest: function (onLoad, onError) {
       var serverTime = 10000;
       var statusOk = 200;
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
-      xhr.addEventListener('load', function() {
+      xhr.addEventListener('load', function () {
         if (xhr.status === statusOk) {
           onLoad(xhr.response);
         } else {
           onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
         }
       });
-      xhr.addEventListener('error', function() {
+      xhr.addEventListener('error', function () {
         onError('Произошла ошибка соединения');
       });
-      xhr.addEventListener('timeout', function() {
+      xhr.addEventListener('timeout', function () {
         onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
       });
 
@@ -59,7 +59,7 @@
       return xhr;
     },
     // показ ошибки
-    showError: function(error) {
+    showError: function (error) {
       var errorModal = document.createElement('div');
       errorModal.style = 'position: absolute; height: auto; width: 500px; left: 50%; top: 50%; padding: 20px; background: #89a1fd; border: 1px solid #333; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 5px 5px 0 rgba(0, 0, 0, .5);';
       errorModal.classList.add('error');
@@ -77,7 +77,7 @@
   };
 
   // обработчики событий валидации имени
-  userNameInput.addEventListener('invalid', function(evt) {
+  userNameInput.addEventListener('invalid', function (evt) {
     var target = evt.target;
     switch (target.value.length) {
       case 0:
@@ -89,7 +89,7 @@
     }
   });
 
-  userNameInput.addEventListener('input', function(evt) {
+  userNameInput.addEventListener('input', function (evt) {
     var target = evt.target;
     if (target.value.length < 2) {
       target.setCustomValidity('Имя должно состоять минимум из 2-х символов!');
