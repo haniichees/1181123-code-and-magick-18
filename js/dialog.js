@@ -2,7 +2,7 @@
 (function () {
   var setup = document.querySelector('.setup');
   var setupHandler = setup.querySelector('.upload');
-
+  var setupForm = document.querySelector('.setup-wizard-form');
 
   // Открытие и закрытие окна насройки
   var openPopup = function () {
@@ -73,6 +73,13 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+  });
+
+  setupForm.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(setupForm), function () {
+      setup.classList.add('hidden');
+    }, window.util.showError);
+    evt.preventDefault();
   });
 
 })();

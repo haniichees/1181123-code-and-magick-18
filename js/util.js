@@ -33,6 +33,43 @@
       }
     },
 
+    // настройки загрузки/отправки/ошибок
+    setupRequest: function (onLoad, onError) {
+      var serverTime = 10000;
+      var statusOk = 200;
+      var xhr = new XMLHttpRequest();
+      xhr.responseType = 'json';
+
+      xhr.addEventListener('load', function () {
+        if (xhr.status === statusOk) {
+          onLoad(xhr.response);
+        } else {
+          onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        }
+      });
+      xhr.addEventListener('error', function () {
+        onError('Произошла ошибка соединения');
+      });
+      xhr.addEventListener('timeout', function () {
+        onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+      });
+
+      xhr.timeout = serverTime;
+
+      return xhr;
+    },
+    // показ ошибки
+    showError: function (error) {
+      var errorModal = document.createElement('div');
+      errorModal.style = 'position: absolute; height: auto; width: 500px; left: 50%; top: 50%; padding: 20px; background: #89a1fd; border: 1px solid #333; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 5px 5px 0 rgba(0, 0, 0, .5);';
+      errorModal.classList.add('error');
+      var errorMessage = document.createElement('h1');
+      errorMessage.style = 'color: white; text-shadow: none; font-size: 30px';
+      errorMessage.textContent = error;
+      errorModal.appendChild(errorMessage);
+      document.body.appendChild(errorModal);
+    },
+
     setupClose: setupClose,
     setupOpen: setupOpen,
     x: x,
