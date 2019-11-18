@@ -31,10 +31,10 @@
   };
 
   var updateWizards = function () {
-    window.render(wizards.sort(function (left, right) {
+    window.renderWizards(wizards.sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
       if (rankDiff === 0) {
-        rankDiff = window.util.compareNames(left.name, right.name);
+        rankDiff = window.util.compareStrings(left.name, right.name);
       }
       return rankDiff;
     }));
@@ -42,7 +42,7 @@
 
   var successHandler = function (data) {
     wizards = data;
-    window.render(wizards);
+    window.renderWizards(wizards);
     updateWizards();
   };
 
@@ -74,10 +74,10 @@
     updateWizards();
   });
 
-  var fireballClickHandler = function () {
+  var fireballClickHandler = window.util.debounce(function () {
     var randColor = window.util.getRandomArrayElement(WIZARD_FIREBALL_COLORS);
     window.util.changeColor(randColor, fireballElement, inputFireball, 'backgroundColor');
-  };
+  });
 
   wizardCoatSetup.addEventListener('click', coatClickHandler);
   wizardEyesSetup.addEventListener('click', eyesClickHandler);
