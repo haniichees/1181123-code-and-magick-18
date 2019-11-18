@@ -1,25 +1,40 @@
 'use strict';
 
 (function () {
-  var URL = 'https://js.dump.academy/code-and-magick';
+  var API_URL = 'https://js.dump.academy/code-and-magick';
 
-  // загрузка данных с сервера
-  function load(onLoad, onError) {
-    var xhr = window.util.setupRequest(onLoad, onError);
-    xhr.open('GET', URL + '/data');
-    xhr.send();
-  }
+  var makeRequest = function (data, method, url, onSuccess, onError) {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
 
-  // отправка данных на сервер
-  function save(data, onLoad, onError) {
-    var xhr = window.util.setupRequest(onLoad, onError);
-    xhr.open('POST', URL);
+    xhr.open(method, API_URL + url);
+
+    xhr.addEventListener('load', function () {
+      if (xhr.status === 200) {
+        onSuccess(xhr.response);
+      } else {
+        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+      }
+    });
+
+    xhr.addEventListener('onError', function () {
+      onError('Произошла ошибка соединения');
+    });
+
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+    });
+
+    xhr.timeout = 10000;
     xhr.send(data);
-  }
+  };
 
-  // экспорт
   window.backend = {
-    load: load,
-    save: save
+    save: function (data, successHandler, errorHandler) {
+      makeRequest(data, 'POST', '/', successHandler, errorHandler);
+    },
+    load: function (successHandler, errorHandler) {
+      makeRequest(null, 'GET', '/data', successHandler, errorHandler);
+    },
   };
 })();
