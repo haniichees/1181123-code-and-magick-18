@@ -8,7 +8,7 @@
     .content
     .querySelector('.setup-similar-item');
 
-  var renderWizard = function (wizard) {
+  var createWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
@@ -18,15 +18,16 @@
     return wizardElement;
   };
 
-  window.render = function (data) {
+  window.renderWizards = function (data) {
     var fragment = document.createDocumentFragment();
-    var takeNumber = data.length > MAX_WIZARD_NUMBER ? MAX_WIZARD_NUMBER : data.length;
+    var wizardsCount = data.length > MAX_WIZARD_NUMBER ? MAX_WIZARD_NUMBER : data.length;
     similarListElement.innerHTML = '';
 
-    for (var i = 0; i < takeNumber; i++) {
-      fragment.appendChild(renderWizard(data[i]));
+    for (var i = 0; i < wizardsCount; i++) {
+      fragment.appendChild(createWizard(data[i]));
     }
     similarListElement.appendChild(fragment);
     userDialog.querySelector('.setup-similar').classList.remove('hidden');
   };
 })();
+

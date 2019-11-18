@@ -23,7 +23,7 @@
       element.style[attribute] = color;
       input.value = color;
     },
-    compareNames: function (left, right) {
+    compareStrings: function (left, right) {
       if (left > right) {
         return 1;
       } else if (left < right) {
